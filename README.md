@@ -1,7 +1,7 @@
-activiti-hibernate-api
+activiti-jpa-api
 ======================
 
-acitiviti hibernate api
+acitiviti jpa api
 
 http://www.activiti.org
 
