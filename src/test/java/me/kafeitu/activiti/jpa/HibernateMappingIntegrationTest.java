@@ -34,7 +34,7 @@ public class HibernateMappingIntegrationTest {
 	@Before
 	public void setUp() throws Exception {
 		Class.forName("org.h2.Driver");
-		String url = "jdbc:h2:mem:activiti-hibernate;DB_CLOSE_DELAY=1000;MVCC=TRUE";
+		String url = "jdbc:h2:mem:activiti-jpa;DB_CLOSE_DELAY=1000;MVCC=TRUE";
 		Connection conn = DriverManager.getConnection(url, "sa", "");
 		assertNotNull(conn);
 
