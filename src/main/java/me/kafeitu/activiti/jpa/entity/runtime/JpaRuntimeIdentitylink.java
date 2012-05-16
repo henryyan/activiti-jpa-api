@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_IDENTITYLINK")

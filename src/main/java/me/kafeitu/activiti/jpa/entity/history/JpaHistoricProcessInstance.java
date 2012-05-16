@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_HI_PROCINST")

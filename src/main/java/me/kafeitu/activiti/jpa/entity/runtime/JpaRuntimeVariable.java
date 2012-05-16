@@ -8,7 +8,7 @@ import me.kafeitu.activiti.jpa.entity.ge.JpaGeBytearray;
 import java.math.BigDecimal;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_VARIABLE")

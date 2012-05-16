@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.math.BigDecimal;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_JOB")

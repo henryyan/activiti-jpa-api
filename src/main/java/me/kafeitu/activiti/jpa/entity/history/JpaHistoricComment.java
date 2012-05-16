@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_HI_COMMENT")

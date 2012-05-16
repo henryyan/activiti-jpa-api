@@ -10,7 +10,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_GE_BYTEARRAY")

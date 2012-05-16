@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_ID_INFO")

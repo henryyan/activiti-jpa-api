@@ -1,7 +1,4 @@
-/**
- * 
- */
-package me.kafeitu.activiti.jpa;
+package me.kafeitu.activiti.jpa.api.hibernate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,6 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Map;
+
+import me.kafeitu.activiti.jpa.api.util.orm.HibernateUtil;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
@@ -24,7 +23,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Hibernate mapping intergration test
  * 
- * @author henryyan
+ * @author HenryYan
  */
 public class HibernateMappingIntegrationTest {
 

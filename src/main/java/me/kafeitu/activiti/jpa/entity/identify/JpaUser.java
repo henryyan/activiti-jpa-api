@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_ID_USER")

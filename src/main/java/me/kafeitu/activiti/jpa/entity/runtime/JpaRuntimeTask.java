@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import me.kafeitu.activiti.jpa.entity.repository.JpaProcessDefinition;
 
 /**
- * @author henryyan
+ * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_TASK")
