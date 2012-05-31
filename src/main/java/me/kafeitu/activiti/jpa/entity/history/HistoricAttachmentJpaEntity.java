@@ -7,54 +7,48 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_HI_ATTACHMENT")
-public class JpaHistoricAttachment implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HistoricAttachmentJpaEntity extends HistoricActivityInstanceEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "CONTENT_ID_")
-	private String contentId;
+	protected String contentId;
 
 	@Column(name = "DESCRIPTION_")
-	private String description;
+	protected String description;
 
 	@Column(name = "NAME_")
-	private String name;
+	protected String name;
 
 	@Column(name = "PROC_INST_ID_")
-	private String procInstId;
+	protected String procInstId;
 
 	@Column(name = "REV_")
-	private Integer rev;
+	protected Integer rev;
 
 	@Column(name = "TASK_ID_")
-	private String taskId;
+	protected String taskId;
 
 	@Column(name = "TYPE_")
-	private String type;
+	protected String type;
 
 	@Column(name = "URL_")
-	private String url;
+	protected String url;
 
 	@Column(name = "USER_ID_")
-	private String userId;
+	protected String userId;
 
-	public JpaHistoricAttachment() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public HistoricAttachmentJpaEntity() {
 	}
 
 	public String getContentId() {

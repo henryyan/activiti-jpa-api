@@ -8,33 +8,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.DeploymentEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RE_DEPLOYMENT")
-public class JpaDeployment implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class DeploymentJpaEntity extends DeploymentEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "DEPLOY_TIME_")
-	private Timestamp deployTime;
+	protected Timestamp deployTime;
 
 	@Column(name = "NAME_")
-	private String name;
+	protected String name;
 
-	public JpaDeployment() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public DeploymentJpaEntity() {
 	}
 
 	public Timestamp getDeployTime() {
@@ -43,14 +37,6 @@ public class JpaDeployment implements Serializable {
 
 	public void setDeployTime(Timestamp deployTime) {
 		this.deployTime = deployTime;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

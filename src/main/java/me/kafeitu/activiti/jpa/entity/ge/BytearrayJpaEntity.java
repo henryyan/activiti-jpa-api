@@ -9,51 +9,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.ByteArrayEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_GE_BYTEARRAY")
-public class JpaGeBytearray implements Serializable {
+public class BytearrayJpaEntity extends ByteArrayEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Lob()
 	@Column(name = "BYTES_")
-	private byte[] bytes;
+	protected byte[] bytes;
 
 	@Column(name = "GENERATED_")
-	private Integer generated;
+	protected Integer generated;
 
 	@Column(name = "NAME_")
-	private String name;
+	protected String name;
 
 	@Column(name = "REV_")
-	private Integer rev;
+	protected Integer rev;
 
 	@JoinColumn(name = "DEPLOYMENT_ID_")
-	private String deploymentId;
+	protected String deploymentId;
 
-	public JpaGeBytearray() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public byte[] getBytes() {
-		return this.bytes;
-	}
-
-	public void setBytes(byte[] bytes) {
-		this.bytes = bytes;
+	public BytearrayJpaEntity() {
 	}
 
 	public Integer getGenerated() {
@@ -62,10 +48,6 @@ public class JpaGeBytearray implements Serializable {
 
 	public void setGenerated(Integer generated) {
 		this.generated = generated;
-	}
-
-	public String getName() {
-		return this.name;
 	}
 
 	public void setName(String name) {
@@ -78,14 +60,6 @@ public class JpaGeBytearray implements Serializable {
 
 	public void setRev(Integer rev) {
 		this.rev = rev;
-	}
-
-	public String getDeploymentId() {
-		return deploymentId;
-	}
-
-	public void setDeploymentId(String deploymentId) {
-		this.deploymentId = deploymentId;
 	}
 
 }

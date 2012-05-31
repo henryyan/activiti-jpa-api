@@ -2,6 +2,9 @@ package me.kafeitu.activiti.jpa.entity.history;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.activiti.engine.impl.persistence.entity.HistoricDetailEntity;
+
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 
@@ -10,62 +13,54 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table(name = "ACT_HI_DETAIL")
-public class JpaHistoricDetail implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HistoricDetailJpaEntity extends HistoricDetailEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "ACT_INST_ID_")
-	private String actInstId;
+	protected String actInstId;
 
 	@Column(name = "BYTEARRAY_ID_")
-	private String bytearrayId;
+	protected String bytearrayId;
 
-	private BigDecimal double_;
+	protected BigDecimal double_;
 
 	@Column(name = "EXECUTION_ID_")
-	private String executionId;
+	protected String executionId;
 
-	private Long longValue;
+	protected Long longValue;
 
 	@Column(name = "NAME_")
-	private String name;
+	protected String name;
 
 	@Column(name = "PROC_INST_ID_")
-	private String procInstId;
+	protected String procInstId;
 
 	@Column(name = "REV_")
-	private BigDecimal rev;
+	protected BigDecimal rev;
 
 	@Column(name = "TASK_ID_")
-	private String taskId;
+	protected String taskId;
 
 	@Column(name = "TEXT_")
-	private String textFirstValue;
+	protected String textFirstValue;
 
 	@Column(name = "TEXT2_")
-	private String textSecondValue;
+	protected String textSecondValue;
 
 	@Column(name = "TIME_")
-	private Timestamp time;
+	protected Timestamp time;
 
 	@Column(name = "TYPE_")
-	private String type;
+	protected String type;
 
 	@Column(name = "VAR_TYPE_")
-	private String varType;
+	protected String varType;
 
-	public JpaHistoricDetail() {
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public HistoricDetailJpaEntity() {
 	}
 
 	public String getActInstId() {
@@ -90,14 +85,6 @@ public class JpaHistoricDetail implements Serializable {
 
 	public void setDouble_(BigDecimal double_) {
 		this.double_ = double_;
-	}
-
-	public String getExecutionId() {
-		return executionId;
-	}
-
-	public void setExecutionId(String executionId) {
-		this.executionId = executionId;
 	}
 
 	public Long getLongValue() {
@@ -132,14 +119,6 @@ public class JpaHistoricDetail implements Serializable {
 		this.rev = rev;
 	}
 
-	public String getTaskId() {
-		return taskId;
-	}
-
-	public void setTaskId(String taskId) {
-		this.taskId = taskId;
-	}
-
 	public String getTextFirstValue() {
 		return textFirstValue;
 	}
@@ -154,10 +133,6 @@ public class JpaHistoricDetail implements Serializable {
 
 	public void setTextSecondValue(String textSecondValue) {
 		this.textSecondValue = textSecondValue;
-	}
-
-	public Timestamp getTime() {
-		return time;
 	}
 
 	public void setTime(Timestamp time) {

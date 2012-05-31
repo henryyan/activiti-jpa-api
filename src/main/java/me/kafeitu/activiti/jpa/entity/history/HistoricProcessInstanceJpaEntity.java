@@ -8,76 +8,54 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_HI_PROCINST")
-public class JpaHistoricProcessInstance implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HistoricProcessInstanceJpaEntity extends HistoricProcessInstanceEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "BUSINESS_KEY_")
-	private String businessKey;
+	protected String businessKey;
 
 	@Column(name = "DELETE_REASON_")
-	private String deleteReason;
+	protected String deleteReason;
 
 	@Column(name = "DURATION_")
-	private Float duration;
+	protected Float duration;
 
 	@Column(name = "END_ACT_ID_")
-	private String endActId;
+	protected String endActId;
 
 	@Column(name = "END_TIME_")
-	private Timestamp endTime;
+	protected Timestamp endTime;
 
 	@Column(name = "PROC_DEF_ID_")
-	private String procDefId;
+	protected String procDefId;
 
 	@Column(name = "PROC_INST_ID_")
-	private String procInstId;
+	protected String procInstId;
 
 	@Column(name = "START_ACT_ID_")
-	private String startActId;
+	protected String startActId;
 
 	@Column(name = "START_TIME_")
-	private Timestamp startTime;
+	protected Timestamp startTime;
 
 	@Column(name = "START_USER_ID_")
-	private String startUserId;
+	protected String startUserId;
 
 	@Column(name = "SUPER_PROCESS_INSTANCE_ID_")
-	private String superProcessInstanceId;
+	protected String superProcessInstanceId;
 
-	public JpaHistoricProcessInstance() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getBusinessKey() {
-		return this.businessKey;
-	}
-
-	public void setBusinessKey(String businessKey) {
-		this.businessKey = businessKey;
-	}
-
-	public String getDeleteReason() {
-		return this.deleteReason;
-	}
-
-	public void setDeleteReason(String deleteReason) {
-		this.deleteReason = deleteReason;
+	public HistoricProcessInstanceJpaEntity() {
 	}
 
 	public Float getDuration() {
@@ -94,10 +72,6 @@ public class JpaHistoricProcessInstance implements Serializable {
 
 	public void setEndActId(String endActId) {
 		this.endActId = endActId;
-	}
-
-	public Timestamp getEndTime() {
-		return this.endTime;
 	}
 
 	public void setEndTime(Timestamp endTime) {
@@ -128,28 +102,8 @@ public class JpaHistoricProcessInstance implements Serializable {
 		this.startActId = startActId;
 	}
 
-	public Timestamp getStartTime() {
-		return this.startTime;
-	}
-
 	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
-	}
-
-	public String getStartUserId() {
-		return this.startUserId;
-	}
-
-	public void setStartUserId(String startUserId) {
-		this.startUserId = startUserId;
-	}
-
-	public String getSuperProcessInstanceId() {
-		return this.superProcessInstanceId;
-	}
-
-	public void setSuperProcessInstanceId(String superProcessInstanceId) {
-		this.superProcessInstanceId = superProcessInstanceId;
 	}
 
 }

@@ -28,26 +28,29 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">none</property>
 
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricProcessInstance" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricTaskInstance" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricActivityInstance" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricDetail" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricAttachment" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.history.JpaHistoricComment" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.HistoricProcessInstanceJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.HistoricTaskInstanceJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.HistoricActivityInstanceJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.HistoricDetailJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.HistoricAttachmentJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.history.CommentJpaEntity" />
 		
-		<mapping class="me.kafeitu.activiti.jpa.entity.repository.JpaDeployment" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.repository.JpaProcessDefinition" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.ge.JpaGeProperty" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.ge.JpaGeBytearray" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.identify.JpaInfo" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.identify.JpaUser" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.identify.JpaGroup" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeIdentitylink" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeExecution" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeEventSubscr" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeVariable" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeTask" />
-		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JpaRuntimeJob" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.repository.DeploymentJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.repository.ProcessDefinitionJpaEntity" />
+		
+		<mapping class="me.kafeitu.activiti.jpa.entity.ge.BytearrayJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.ge.PropertyJpaEntity" />
+		
+		<mapping class="me.kafeitu.activiti.jpa.entity.identify.GroupJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.identify.IdentityInfoJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.identify.UserJpaEntity" />
+		
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.IdentityLinkJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.ExecutionJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.EventSubscriptionJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.VariableInstanceJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.TaskJpaEntity" />
+		<mapping class="me.kafeitu.activiti.jpa.entity.runtime.JobJpaEntity" />
 
 	</session-factory>
 </hibernate-configuration>

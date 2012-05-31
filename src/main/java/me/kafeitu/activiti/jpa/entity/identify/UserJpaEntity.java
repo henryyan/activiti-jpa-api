@@ -11,58 +11,44 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.UserEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_ID_USER")
-public class JpaUser implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class UserJpaEntity extends UserEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "EMAIL_")
-	private String email;
+	protected String email;
 
 	@Column(name = "FIRST_")
-	private String first;
+	protected String first;
 
 	@Column(name = "LAST_")
-	private String last;
+	protected String last;
 
 	@Column(name = "PICTURE_ID_")
-	private String pictureId;
+	protected String pictureId;
 
 	@Column(name = "PWD_")
-	private String pwd;
+	protected String pwd;
 
 	@Column(name = "REV_")
-	private Integer rev;
+	protected Integer rev;
 
 	// bi-directional many-to-many association to ActIdGroup
 	@ManyToMany
 	@JoinTable(name = "ACT_ID_MEMBERSHIP", joinColumns = { @JoinColumn(name = "USER_ID_") }, inverseJoinColumns = { @JoinColumn(name = "GROUP_ID_") })
-	private List<JpaGroup> idGroups;
+	protected List<GroupJpaEntity> groups;
 
-	public JpaUser() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public UserJpaEntity() {
 	}
 
 	public String getFirst() {
@@ -105,12 +91,12 @@ public class JpaUser implements Serializable {
 		this.rev = rev;
 	}
 
-	public List<JpaGroup> getIdGroups() {
-		return idGroups;
+	public List<GroupJpaEntity> getGroups() {
+		return groups;
 	}
 
-	public void setIdGroups(List<JpaGroup> idGroups) {
-		this.idGroups = idGroups;
+	public void setGroups(List<GroupJpaEntity> idGroups) {
+		this.groups = idGroups;
 	}
 
 }

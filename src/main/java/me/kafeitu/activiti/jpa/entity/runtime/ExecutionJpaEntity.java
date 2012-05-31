@@ -11,73 +11,67 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
+
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_EXECUTION")
-public class JpaRuntimeExecution implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ExecutionJpaEntity extends ExecutionEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "ACT_ID_")
-	private String actId;
+	protected String actId;
 
 	@Column(name = "BUSINESS_KEY_")
-	private String businessKey;
+	protected String businessKey;
 
 	@Column(name = "IS_ACTIVE_")
-	private Boolean isActive;
+	protected Boolean isActive;
 
 	@Column(name = "IS_CONCURRENT_")
-	private Boolean isConcurrent;
+	protected Boolean isConcurrent;
 
 	@Column(name = "IS_EVENT_SCOPE_")
-	private Boolean isEventScope;
+	protected Boolean isEventScope;
 
 	@Column(name = "IS_SCOPE_")
-	private Boolean isScope;
+	protected Boolean isScope;
 
 	@Column(name = "PROC_DEF_ID_")
-	private String procDefId;
+	protected String procDefId;
 
 	@Column(name = "REV_")
-	private Integer rev;
+	protected Integer rev;
 
 	@Column(name = "SUSPENSION_STATE_")
-	private Integer suspensionState;
+	protected Integer suspensionState;
 
 	// bi-directional many-to-one association to ActRuEventSubscr
 	@OneToMany(mappedBy = "execution")
-	private List<JpaRuntimeEventSubscr> actRuEventSubscrs;
+	protected List<EventSubscriptionJpaEntity> actRuEventSubscrs;
 
 	// bi-directional many-to-one association to ActRuExecution
 	@ManyToOne
 	@JoinColumn(name = "SUPER_EXEC_")
-	private JpaRuntimeExecution superExecution;
+	protected ExecutionJpaEntity superExecution;
 
 	// bi-directional many-to-one association to ActRuExecution
 	@ManyToOne
 	@JoinColumn(name = "PROC_INST_ID_")
-	private JpaRuntimeExecution processInstance;
+	protected ExecutionJpaEntity processInstance;
 
 	// bi-directional many-to-one association to ActRuExecution
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID_")
-	private JpaRuntimeExecution parent;
+	protected ExecutionJpaEntity parent;
 
-	public JpaRuntimeExecution() {
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public ExecutionJpaEntity() {
 	}
 
 	public String getActId() {
@@ -86,14 +80,6 @@ public class JpaRuntimeExecution implements Serializable {
 
 	public void setActId(String actId) {
 		this.actId = actId;
-	}
-
-	public String getBusinessKey() {
-		return businessKey;
-	}
-
-	public void setBusinessKey(String businessKey) {
-		this.businessKey = businessKey;
 	}
 
 	public Boolean getIsActive() {
@@ -144,43 +130,27 @@ public class JpaRuntimeExecution implements Serializable {
 		this.rev = rev;
 	}
 
-	public Integer getSuspensionState() {
-		return suspensionState;
-	}
-
 	public void setSuspensionState(Integer suspensionState) {
 		this.suspensionState = suspensionState;
 	}
 
-	public List<JpaRuntimeEventSubscr> getActRuEventSubscrs() {
+	public List<EventSubscriptionJpaEntity> getActRuEventSubscrs() {
 		return actRuEventSubscrs;
 	}
 
-	public void setActRuEventSubscrs(List<JpaRuntimeEventSubscr> actRuEventSubscrs) {
+	public void setActRuEventSubscrs(List<EventSubscriptionJpaEntity> actRuEventSubscrs) {
 		this.actRuEventSubscrs = actRuEventSubscrs;
 	}
 
-	public JpaRuntimeExecution getSuperExecution() {
-		return superExecution;
-	}
-
-	public void setSuperExecution(JpaRuntimeExecution superExecution) {
+	public void setSuperExecution(ExecutionJpaEntity superExecution) {
 		this.superExecution = superExecution;
 	}
 
-	public JpaRuntimeExecution getProcessInstance() {
-		return processInstance;
-	}
-
-	public void setProcessInstance(JpaRuntimeExecution processInstance) {
+	public void setProcessInstance(ExecutionJpaEntity processInstance) {
 		this.processInstance = processInstance;
 	}
 
-	public JpaRuntimeExecution getParent() {
-		return parent;
-	}
-
-	public void setParent(JpaRuntimeExecution parent) {
+	public void setParent(ExecutionJpaEntity parent) {
 		this.parent = parent;
 	}
 

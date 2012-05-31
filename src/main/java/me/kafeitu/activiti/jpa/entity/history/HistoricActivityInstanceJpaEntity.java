@@ -1,61 +1,58 @@
 package me.kafeitu.activiti.jpa.entity.history;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.activiti.engine.impl.persistence.entity.HistoricActivityInstanceEntity;
 
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_HI_ACTINST")
-public class JpaHistoricActivityInstance implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class HistoricActivityInstanceJpaEntity extends HistoricActivityInstanceEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "ACT_ID_")
-	private String actId;
+	protected String actId;
 
 	@Column(name = "ACT_NAME_")
-	private String actName;
+	protected String actName;
 
 	@Column(name = "ACT_TYPE_")
-	private String actType;
+	protected String actType;
 
 	@Column(name = "ASSIGNEE_")
-	private String assignee;
+	protected String assignee;
 
 	@Column(name = "DURATION_")
-	private BigDecimal duration;
+	protected Long duration;
 
 	@Column(name = "END_TIME_")
-	private Timestamp endTime;
+	protected Timestamp endTime;
 
 	@Column(name = "EXECUTION_ID_")
-	private String executionId;
+	protected String executionId;
 
 	@Column(name = "PROC_DEF_ID_")
-	private String procDefId;
+	protected String procDefId;
 
 	@Column(name = "PROC_INST_ID_")
-	private String procInstId;
+	protected String procInstId;
 
 	@Column(name = "START_TIME_")
-	private Timestamp startTime;
+	protected Timestamp startTime;
 
-	public JpaHistoricActivityInstance() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public HistoricActivityInstanceJpaEntity() {
 	}
 
 	public String getActId() {
@@ -82,36 +79,16 @@ public class JpaHistoricActivityInstance implements Serializable {
 		this.actType = actType;
 	}
 
-	public String getAssignee() {
-		return this.assignee;
-	}
-
-	public void setAssignee(String assignee) {
-		this.assignee = assignee;
-	}
-
-	public BigDecimal getDuration() {
+	public Long getDuration() {
 		return this.duration;
 	}
 
-	public void setDuration(BigDecimal duration) {
+	public void setDuration(Long duration) {
 		this.duration = duration;
-	}
-
-	public Timestamp getEndTime() {
-		return this.endTime;
 	}
 
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
-	}
-
-	public String getExecutionId() {
-		return this.executionId;
-	}
-
-	public void setExecutionId(String executionId) {
-		this.executionId = executionId;
 	}
 
 	public String getProcDefId() {
@@ -128,10 +105,6 @@ public class JpaHistoricActivityInstance implements Serializable {
 
 	public void setProcInstId(String procInstId) {
 		this.procInstId = procInstId;
-	}
-
-	public Timestamp getStartTime() {
-		return this.startTime;
 	}
 
 	public void setStartTime(Timestamp startTime) {

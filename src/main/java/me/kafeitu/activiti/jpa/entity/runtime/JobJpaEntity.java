@@ -1,82 +1,76 @@
 package me.kafeitu.activiti.jpa.entity.runtime;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import me.kafeitu.activiti.jpa.entity.ge.JpaGeBytearray;
-
 import java.sql.Timestamp;
-import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import me.kafeitu.activiti.jpa.entity.ge.BytearrayJpaEntity;
+
+import org.activiti.engine.impl.persistence.entity.JobEntity;
 
 /**
  * @author HenryYan
  */
 @Entity
 @Table(name = "ACT_RU_JOB")
-public class JpaRuntimeJob implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class JobJpaEntity extends JobEntity implements Serializable {
+	protected static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ID_")
-	private String id;
+	protected String id;
 
 	@Column(name = "DUEDATE_")
-	private Timestamp duedate;
+	protected Timestamp duedate;
 
 	@Column(name = "EXCEPTION_MSG_")
-	private String exceptionMsg;
+	protected String exceptionMsg;
 
 	@Column(name = "EXCLUSIVE_")
-	private BigDecimal exclusive;
+	protected Integer exclusive;
 
 	@Column(name = "EXECUTION_ID_")
-	private String executionId;
+	protected String executionId;
 
 	@Column(name = "HANDLER_CFG_")
-	private String handlerCfg;
+	protected String handlerCfg;
 
 	@Column(name = "HANDLER_TYPE_")
-	private String handlerType;
+	protected String handlerType;
 
 	@Column(name = "LOCK_EXP_TIME_")
-	private Timestamp lockExpTime;
+	protected Timestamp lockExpTime;
 
 	@Column(name = "LOCK_OWNER_")
-	private String lockOwner;
+	protected String lockOwner;
 
 	@Column(name = "PROCESS_INSTANCE_ID_")
-	private String processInstanceId;
+	protected String processInstanceId;
 
 	@Column(name = "REPEAT_")
-	private String repeat;
+	protected String repeat;
 
 	@Column(name = "RETRIES_")
-	private BigDecimal retries;
+	protected Integer retries;
 
 	@Column(name = "REV_")
-	private BigDecimal rev;
+	protected Integer rev;
 
 	@Column(name = "TYPE_")
-	private String type;
+	protected String type;
 
 	// bi-directional many-to-one association to ActGeBytearray
 	@ManyToOne
 	@JoinColumn(name = "EXCEPTION_STACK_ID_")
-	private JpaGeBytearray geBytearray;
+	protected BytearrayJpaEntity geBytearray;
 
-	public JpaRuntimeJob() {
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Timestamp getDuedate() {
-		return this.duedate;
+	public JobJpaEntity() {
 	}
 
 	public void setDuedate(Timestamp duedate) {
@@ -91,20 +85,12 @@ public class JpaRuntimeJob implements Serializable {
 		this.exceptionMsg = exceptionMsg;
 	}
 
-	public BigDecimal getExclusive() {
+	public Integer getExclusive() {
 		return this.exclusive;
 	}
 
-	public void setExclusive(BigDecimal exclusive) {
+	public void setExclusive(Integer exclusive) {
 		this.exclusive = exclusive;
-	}
-
-	public String getExecutionId() {
-		return this.executionId;
-	}
-
-	public void setExecutionId(String executionId) {
-		this.executionId = executionId;
 	}
 
 	public String getHandlerCfg() {
@@ -131,22 +117,6 @@ public class JpaRuntimeJob implements Serializable {
 		this.lockExpTime = lockExpTime;
 	}
 
-	public String getLockOwner() {
-		return this.lockOwner;
-	}
-
-	public void setLockOwner(String lockOwner) {
-		this.lockOwner = lockOwner;
-	}
-
-	public String getProcessInstanceId() {
-		return this.processInstanceId;
-	}
-
-	public void setProcessInstanceId(String processInstanceId) {
-		this.processInstanceId = processInstanceId;
-	}
-
 	public String getRepeat() {
 		return this.repeat;
 	}
@@ -155,19 +125,15 @@ public class JpaRuntimeJob implements Serializable {
 		this.repeat = repeat;
 	}
 
-	public BigDecimal getRetries() {
-		return this.retries;
-	}
-
-	public void setRetries(BigDecimal retries) {
+	public void setRetries(Integer retries) {
 		this.retries = retries;
 	}
 
-	public BigDecimal getRev() {
+	public Integer getRev() {
 		return this.rev;
 	}
 
-	public void setRev(BigDecimal rev) {
+	public void setRev(Integer rev) {
 		this.rev = rev;
 	}
 
@@ -179,13 +145,12 @@ public class JpaRuntimeJob implements Serializable {
 		this.type = type;
 	}
 
-	public JpaGeBytearray getGeBytearray() {
+	public BytearrayJpaEntity getGeBytearray() {
 		return geBytearray;
 	}
 
-	public void setGeBytearray(JpaGeBytearray geBytearray) {
+	public void setGeBytearray(BytearrayJpaEntity geBytearray) {
 		this.geBytearray = geBytearray;
 	}
-
 
 }
