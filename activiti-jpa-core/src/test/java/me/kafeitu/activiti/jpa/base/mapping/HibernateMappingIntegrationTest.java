@@ -1,4 +1,4 @@
-package me.kafeitu.activiti.jpa.api.hibernate;
+package me.kafeitu.activiti.jpa.base.mapping;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Map;
 
-import me.kafeitu.activiti.jpa.api.util.orm.HibernateUtil;
+import me.kafeitu.activiti.jpa.base.util.orm.HibernateUtil;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;

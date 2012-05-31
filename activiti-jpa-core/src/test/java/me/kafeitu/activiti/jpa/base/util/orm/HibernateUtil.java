@@ -1,4 +1,4 @@
-package me.kafeitu.activiti.jpa.api.util.orm;
+package me.kafeitu.activiti.jpa.base.util.orm;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

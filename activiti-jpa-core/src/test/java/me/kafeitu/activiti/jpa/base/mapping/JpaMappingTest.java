@@ -1,4 +1,4 @@
-package me.kafeitu.activiti.jpa.api.jpa;
+package me.kafeitu.activiti.jpa.base.mapping;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -50,7 +50,7 @@ public class JpaMappingTest extends AbstractJUnit4SpringContextTests {
 			logger.info("ok: " + entityName);
 			entityCounter++;
 		}
-		assertEquals(19, entityCounter);
+		assertEquals(20, entityCounter);
 	}
 
 }
