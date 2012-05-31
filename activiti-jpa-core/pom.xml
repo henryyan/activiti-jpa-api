@@ -57,6 +57,7 @@
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>activiti-jpa-test</artifactId>
 			<version>${project.parent.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- utils begin -->
 		<dependency>

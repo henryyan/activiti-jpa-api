@@ -41,6 +41,7 @@
 
 	<!-- Jpa Entity Manager 配置 -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="META-INF/persistence-test.xml" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="activiti-jpa" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />

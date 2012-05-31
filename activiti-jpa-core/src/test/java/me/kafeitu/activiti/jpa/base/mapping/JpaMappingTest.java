@@ -50,7 +50,7 @@ public class JpaMappingTest extends AbstractJUnit4SpringContextTests {
 			logger.info("ok: " + entityName);
 			entityCounter++;
 		}
-		assertEquals(20, entityCounter);
+		assertEquals(19, entityCounter);
 	}
 
 }
