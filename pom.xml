@@ -11,6 +11,5 @@
 	<modules>
 		<module>activiti-jpa-parent</module>
 		<module>activiti-jpa-core</module>
-		<module>activiti-jpa-test</module>
 	</modules>
 </project>
