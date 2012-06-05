@@ -4,9 +4,12 @@ import java.util.Map;
 
 import me.kafeitu.activiti.jpa.business.entity.Leave;
 import me.kafeitu.activiti.jpa.business.repository.LeaveRepository;
+import me.kafeitu.activiti.jpa.entity.runtime.ExecutionJpaEntity;
+import me.kafeitu.activiti.jpa.repository.runtime.ProcessInstanceRepository;
 import me.kafeitu.activiti.jpa.service.base.AbstractWorkflowService;
 
 import org.activiti.engine.runtime.ProcessInstance;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LeaveWorkflowService extends AbstractWorkflowService {
 
-	protected LeaveRepository leaveDao;
-
+	protected LeaveRepository leaveRepository;
+	
+	protected ProcessInstanceRepository processInstanceRepository;
+	
 	/**
 	 * start process instance with save entity
 	 * 
@@ -29,14 +34,35 @@ public class LeaveWorkflowService extends AbstractWorkflowService {
 	 * @param variables		process instance variables for start action
 	 */
 	public ProcessInstance start(Leave entity, Map<String, Object> variables) {
-		leaveDao.save(entity);
+		leaveRepository.save(entity);
+		
+		logger.debug("create leave: {}", entity.getId());
+		
+		// start process instance
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave", entity.getId().toString(), variables);
+		
+		// set process instance to entity
+		ExecutionJpaEntity executionJpaEntity = processInstanceRepository.findOne(processInstance.getId());
+		entity.setProcessInstance(executionJpaEntity);
+		leaveRepository.save(entity);
+		System.out.println(ToStringBuilder.reflectionToString(executionJpaEntity));
+		
 		return processInstance;
 	}
 
 	@Autowired
-	public void setLeaveDao(LeaveRepository leaveDao) {
-		this.leaveDao = leaveDao;
+	public void setLeaveDao(LeaveRepository leaveRepository) {
+		this.leaveRepository = leaveRepository;
+	}
+
+	@Autowired
+	public void setProcessInstanceRepository(ProcessInstanceRepository processInstanceRepository) {
+		this.processInstanceRepository = processInstanceRepository;
+	}
+
+	@Override
+	public void flush() {
+		leaveRepository.flush();
 	}
 
 }

@@ -1,5 +1,7 @@
 package me.kafeitu.activiti.jpa.service;
 
+import java.util.List;
+
 import me.kafeitu.activiti.jpa.entity.runtime.ExecutionJpaEntity;
 
 import org.activiti.engine.RuntimeService;
@@ -7,13 +9,10 @@ import org.activiti.engine.RuntimeService;
 /**
  * Extend {@link RuntimeService}
  * 
- * <p><b>T</b>：entity type</p>
- * <p><b>PK</b>：entity key type</p>
- *
  * @author HenryYan
  */
 public interface RuntimeJpaService {
 
-	public Iterable<ExecutionJpaEntity> all();
+	public List<ExecutionJpaEntity> all();
 	
 }

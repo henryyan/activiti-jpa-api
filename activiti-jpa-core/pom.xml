@@ -51,19 +51,19 @@
 		</dependency>
 		<!-- logging end -->
 
-		<!-- test begin
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>activiti-jpa-test</artifactId>
-			<version>${project.parent.version}</version>
-			<scope>test</scope>
-		</dependency> -->
+		<!-- test begin -->
 		<!-- activiti -->
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring</artifactId>
 		</dependency>
+
 		<!-- utils begin -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

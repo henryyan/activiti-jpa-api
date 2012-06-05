@@ -69,8 +69,11 @@ public abstract class AbstractWorkflowService {
 		this.managementService = managementService;
 	}
 
+	@Autowired
 	public void setRuntimeJpaService(RuntimeJpaService runtimeJpaService) {
 		this.runtimeJpaService = runtimeJpaService;
 	}
+	
+	public abstract void flush();
 
 }

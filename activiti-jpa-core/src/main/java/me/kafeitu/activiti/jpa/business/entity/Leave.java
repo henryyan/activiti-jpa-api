@@ -3,14 +3,21 @@ package me.kafeitu.activiti.jpa.business.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+import me.kafeitu.activiti.jpa.entity.runtime.ExecutionJpaEntity;
 
 /**
  * Entity: Leave
@@ -23,7 +30,6 @@ public class Leave implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected Long id;
-	private String processInstanceId;
 	private String userId;
 	private Date startTime;
 	private Date endTime;
@@ -33,6 +39,8 @@ public class Leave implements Serializable {
 	private String leaveType;
 	private String reason;
 
+	private ExecutionJpaEntity processInstance;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
@@ -41,15 +49,6 @@ public class Leave implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	@Column
-	public String getProcessInstanceId() {
-		return processInstanceId;
-	}
-
-	public void setProcessInstanceId(String processInstanceId) {
-		this.processInstanceId = processInstanceId;
 	}
 
 	@Column
@@ -127,6 +126,21 @@ public class Leave implements Serializable {
 
 	public void setRealityEndTime(Date realityEndTime) {
 		this.realityEndTime = realityEndTime;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "PROCESS_INSTANCE_ID")
+	public ExecutionJpaEntity getProcessInstance() {
+		return processInstance;
+	}
+
+	public void setProcessInstance(ExecutionJpaEntity processInstance) {
+		this.processInstance = processInstance;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

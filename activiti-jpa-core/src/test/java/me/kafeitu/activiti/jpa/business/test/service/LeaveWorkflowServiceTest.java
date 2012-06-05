@@ -14,12 +14,14 @@ import javax.persistence.PersistenceContext;
 
 import me.kafeitu.activiti.jpa.base.test.SpringTransactionalTestCase;
 import me.kafeitu.activiti.jpa.business.entity.Leave;
+import me.kafeitu.activiti.jpa.business.repository.LeaveRepository;
 import me.kafeitu.activiti.jpa.business.service.LeaveWorkflowService;
 import me.kafeitu.activiti.jpa.entity.runtime.ExecutionJpaEntity;
 import me.kafeitu.activiti.jpa.service.RuntimeJpaService;
 
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,18 +34,21 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(locations = { "classpath:me/kafeitu/activiti/jpa/business/test/service/LeaveWorkflowServiceTest-context.xml" })
 public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 
-	@PersistenceContext
-	private EntityManager em;
-
+	@Autowired
+	protected LeaveRepository leaveRepository;
+	
 	@Autowired
 	private LeaveWorkflowService leaveWorkflowService;
-	
+
 	@Autowired
 	private RuntimeService runtimeService;
-	
+
 	@Autowired
 	private RuntimeJpaService runtimeJpaService;
 	
+	@PersistenceContext
+	private EntityManager em;
+
 	private Leave leave;
 	private ProcessInstance processInstance;
 
@@ -56,23 +61,29 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 	public void testStartProcessInstance() throws Exception {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		startSingleProcessInstance(variables);
-		
+
 		assertNotNull(processInstance);
-		
+
 		// flush session to db
-		em.flush();
+		leaveWorkflowService.flush();
+
+		em.clear();
 		
+		leave = leaveRepository.findOne(leave.getId());
 		assertEquals(processInstance.getBusinessKey(), leave.getId().toString());
+		ExecutionJpaEntity executionJpaEntity = leave.getProcessInstance();
+		System.out.println(ToStringBuilder.reflectionToString(executionJpaEntity));
+		assertEquals("deptLeaderAudit", executionJpaEntity.getActivityId());
 	}
-	
+
 	@Test
 	public void testProcessInstanceQuery() throws Exception {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		startSingleProcessInstance(variables);
-		
+
 		long count = runtimeService.createProcessInstanceQuery().count();
 		assertEquals(1, count);
-		
+
 		Iterable<ExecutionJpaEntity> all = runtimeJpaService.all();
 		List<ExecutionJpaEntity> allList = new ArrayList<ExecutionJpaEntity>();
 		for (ExecutionJpaEntity executionJpaEntity : all) {
@@ -80,7 +91,7 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 		}
 		assertEquals(1, allList.size());
 	}
-	
+
 	@Test
 	public void testMultiProcessInstanceQuery() throws Exception {
 		int counter = 5;
@@ -88,10 +99,10 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 			Map<String, Object> variables = new HashMap<String, Object>();
 			startSingleProcessInstance(variables);
 		}
-		
+
 		long count = runtimeService.createProcessInstanceQuery().count();
 		assertEquals(counter, count);
-		
+
 		Iterable<ExecutionJpaEntity> all = runtimeJpaService.all();
 		List<ExecutionJpaEntity> allList = new ArrayList<ExecutionJpaEntity>();
 		for (ExecutionJpaEntity executionJpaEntity : all) {

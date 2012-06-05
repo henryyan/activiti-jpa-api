@@ -1,14 +1,10 @@
 package me.kafeitu.activiti.jpa.entity.runtime;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
@@ -26,7 +22,7 @@ public class ExecutionJpaEntity extends ExecutionEntity implements Serializable 
 	protected String id;
 
 	@Column(name = "ACT_ID_")
-	protected String actId;
+	protected String activityId;
 
 	@Column(name = "BUSINESS_KEY_")
 	protected String businessKey;
@@ -44,7 +40,7 @@ public class ExecutionJpaEntity extends ExecutionEntity implements Serializable 
 	protected Boolean isScope;
 
 	@Column(name = "PROC_DEF_ID_")
-	protected String procDefId;
+	protected String processDefinitionId;
 
 	@Column(name = "REV_")
 	protected Integer rev;
@@ -52,34 +48,37 @@ public class ExecutionJpaEntity extends ExecutionEntity implements Serializable 
 	@Column(name = "SUSPENSION_STATE_")
 	protected Integer suspensionState;
 
-	// bi-directional many-to-one association to ActRuEventSubscr
-	@OneToMany(mappedBy = "execution")
-	protected List<EventSubscriptionJpaEntity> actRuEventSubscrs;
+	@Column(name = "PROC_INST_ID_")
+	protected String processInstanceId;
 
-	// bi-directional many-to-one association to ActRuExecution
-	@ManyToOne
-	@JoinColumn(name = "SUPER_EXEC_")
-	protected ExecutionJpaEntity superExecution;
-
-	// bi-directional many-to-one association to ActRuExecution
-	@ManyToOne
-	@JoinColumn(name = "PROC_INST_ID_")
-	protected ExecutionJpaEntity processInstance;
-
-	// bi-directional many-to-one association to ActRuExecution
-	@ManyToOne
-	@JoinColumn(name = "PARENT_ID_")
-	protected ExecutionJpaEntity parent;
+	@Column(name = "PARENT_ID_")
+	protected String parentId;
 
 	public ExecutionJpaEntity() {
 	}
 
-	public String getActId() {
-		return actId;
+	public String getId() {
+		return id;
 	}
 
-	public void setActId(String actId) {
-		this.actId = actId;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(String activityId) {
+		this.activityId = activityId;
+	}
+
+	public String getBusinessKey() {
+		return businessKey;
+	}
+
+	public void setBusinessKey(String businessKey) {
+		this.businessKey = businessKey;
 	}
 
 	public Boolean getIsActive() {
@@ -114,12 +113,12 @@ public class ExecutionJpaEntity extends ExecutionEntity implements Serializable 
 		this.isScope = isScope;
 	}
 
-	public String getProcDefId() {
-		return procDefId;
+	public String getProcessDefinitionId() {
+		return processDefinitionId;
 	}
 
-	public void setProcDefId(String procDefId) {
-		this.procDefId = procDefId;
+	public void setProcessDefinitionId(String processDefinitionId) {
+		this.processDefinitionId = processDefinitionId;
 	}
 
 	public Integer getRev() {
@@ -130,28 +129,28 @@ public class ExecutionJpaEntity extends ExecutionEntity implements Serializable 
 		this.rev = rev;
 	}
 
-	public void setSuspensionState(Integer suspensionState) {
+	public int getSuspensionState() {
+		return suspensionState;
+	}
+
+	public void setSuspensionState(int suspensionState) {
 		this.suspensionState = suspensionState;
 	}
 
-	public List<EventSubscriptionJpaEntity> getActRuEventSubscrs() {
-		return actRuEventSubscrs;
+	public String getProcessInstanceId() {
+		return processInstanceId;
 	}
 
-	public void setActRuEventSubscrs(List<EventSubscriptionJpaEntity> actRuEventSubscrs) {
-		this.actRuEventSubscrs = actRuEventSubscrs;
+	public void setProcessInstanceId(String processInstanceId) {
+		this.processInstanceId = processInstanceId;
 	}
 
-	public void setSuperExecution(ExecutionJpaEntity superExecution) {
-		this.superExecution = superExecution;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setProcessInstance(ExecutionJpaEntity processInstance) {
-		this.processInstance = processInstance;
-	}
-
-	public void setParent(ExecutionJpaEntity parent) {
-		this.parent = parent;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
 }
