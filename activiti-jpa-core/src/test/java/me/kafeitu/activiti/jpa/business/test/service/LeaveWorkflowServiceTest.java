@@ -80,6 +80,25 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 		}
 		assertEquals(1, allList.size());
 	}
+	
+	@Test
+	public void testMultiProcessInstanceQuery() throws Exception {
+		int counter = 5;
+		for (int i = 0; i < counter; i++) {
+			Map<String, Object> variables = new HashMap<String, Object>();
+			startSingleProcessInstance(variables);
+		}
+		
+		long count = runtimeService.createProcessInstanceQuery().count();
+		assertEquals(counter, count);
+		
+		Iterable<ExecutionJpaEntity> all = runtimeJpaService.all();
+		List<ExecutionJpaEntity> allList = new ArrayList<ExecutionJpaEntity>();
+		for (ExecutionJpaEntity executionJpaEntity : all) {
+			allList.add(executionJpaEntity);
+		}
+		assertEquals(counter, allList.size());
+	}
 
 	/**
 	 * start a process instance of leave
