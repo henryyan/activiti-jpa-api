@@ -1,4 +1,4 @@
-package me.kafeitu.activiti.jpa.business.test.dao;
+package me.kafeitu.activiti.jpa.business.test.repository;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import me.kafeitu.activiti.jpa.base.test.SpringTransactionalTestCase;
-import me.kafeitu.activiti.jpa.business.dao.LeaveDao;
 import me.kafeitu.activiti.jpa.business.entity.Leave;
+import me.kafeitu.activiti.jpa.business.repository.LeaveRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +25,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:me/kafeitu/activiti/jpa/business/test/dao/LeaveDaoTest-context.xml")
-public class LeaveDaoTest extends SpringTransactionalTestCase {
+public class LeaveRepositoryTest extends SpringTransactionalTestCase {
 
 	@Autowired
-	private LeaveDao entityDao;
+	private LeaveRepository entityRepository;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -44,19 +44,19 @@ public class LeaveDaoTest extends SpringTransactionalTestCase {
 		leave.setLeaveType("公休");
 		leave.setUserId("kafeitu");
 		leave.setReason("no reason");
-		entityDao.save(leave);
+		entityRepository.save(leave);
 		em.flush();
 
 		// 获取用户
-		leave = entityDao.findOne(leave.getId());
+		leave = entityRepository.findOne(leave.getId());
 		assertNotNull(leave);
 
 		// 删除请假
-		entityDao.delete(leave);
+		entityRepository.delete(leave);
 		em.flush();
 
 		// 获取用户
-		leave = entityDao.findOne(leave.getId());
+		leave = entityRepository.findOne(leave.getId());
 		assertNull(leave);
 	}
 

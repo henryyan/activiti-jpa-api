@@ -2,8 +2,8 @@ package me.kafeitu.activiti.jpa.business.service;
 
 import java.util.Map;
 
-import me.kafeitu.activiti.jpa.business.dao.LeaveDao;
 import me.kafeitu.activiti.jpa.business.entity.Leave;
+import me.kafeitu.activiti.jpa.business.repository.LeaveRepository;
 import me.kafeitu.activiti.jpa.service.base.AbstractWorkflowService;
 
 import org.activiti.engine.runtime.ProcessInstance;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LeaveWorkflowService extends AbstractWorkflowService {
 
-	protected LeaveDao leaveDao;
+	protected LeaveRepository leaveDao;
 
 	/**
 	 * start process instance with save entity
@@ -35,7 +35,7 @@ public class LeaveWorkflowService extends AbstractWorkflowService {
 	}
 
 	@Autowired
-	public void setLeaveDao(LeaveDao leaveDao) {
+	public void setLeaveDao(LeaveRepository leaveDao) {
 		this.leaveDao = leaveDao;
 	}
 

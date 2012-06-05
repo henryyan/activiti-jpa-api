@@ -1,4 +1,4 @@
-package me.kafeitu.activiti.jpa.business.dao;
+package me.kafeitu.activiti.jpa.business.repository;
 
 import me.kafeitu.activiti.jpa.business.entity.Leave;
 
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
  * @author HenryYan
  */
 @Component
-public interface LeaveDao extends CrudRepository<Leave, Long> {
+public interface LeaveRepository extends CrudRepository<Leave, Long> {
 	
 }
