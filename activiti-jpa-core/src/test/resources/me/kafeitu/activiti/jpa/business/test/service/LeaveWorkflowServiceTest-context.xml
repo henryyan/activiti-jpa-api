@@ -14,7 +14,7 @@
 	<description>Spring For Test</description>
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="me.kafeitu.activiti.jpa.business" />
+	<context:component-scan base-package="me.kafeitu.activiti.jpa" />
 
 	<!-- 定义受环境影响易变的变量 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -61,7 +61,7 @@
 	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 	<!-- Spring Data Jpa配置 -->
-	<jpa:repositories base-package="me.kafeitu.activiti.jpa.business" transaction-manager-ref="transactionManager"
+	<jpa:repositories base-package="me.kafeitu.activiti.jpa" transaction-manager-ref="transactionManager"
 		entity-manager-factory-ref="entityManagerFactory" />
 
 	<!-- Jpa 事务配置 -->
