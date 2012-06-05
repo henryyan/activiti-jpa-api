@@ -1,7 +1,6 @@
 package me.kafeitu.activiti.jpa.base.mapping;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,36 +8,28 @@ import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import javax.sql.DataSource;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * JPA Unit Test
  *
  * @author HenryYan
  */
-@ContextConfiguration(locations = { "/applicationContext-test.xml" })
-public class JpaMappingTest extends AbstractJUnit4SpringContextTests {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:me/kafeitu/activiti/jpa/base/mapping/JpaMappingTest-context.xml")
+public class JpaMappingTest {
 
 	private static Logger logger = LoggerFactory.getLogger(JpaMappingTest.class);
 
 	protected DataSource dataSource;
-	private ProcessEngine processEngine;
 
 	@PersistenceContext
 	private EntityManager em;
-
-	@Before
-	public void setUp() throws Exception {
-		processEngine = ProcessEngines.getDefaultProcessEngine();
-		assertNotNull(processEngine);
-	}
 
 	@Test
 	public void allClassMapping() throws Exception {
@@ -50,7 +41,7 @@ public class JpaMappingTest extends AbstractJUnit4SpringContextTests {
 			logger.info("ok: " + entityName);
 			entityCounter++;
 		}
-		assertEquals(19, entityCounter);
+		assertEquals(20, entityCounter);
 	}
 
 }

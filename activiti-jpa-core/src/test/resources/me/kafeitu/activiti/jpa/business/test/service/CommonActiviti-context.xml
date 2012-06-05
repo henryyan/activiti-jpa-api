@@ -8,15 +8,10 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
-		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
-	default-lazy-init="true">
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<description>Spring For Test</description>
+	<description>Activiti Common Configuration</description>
 
-	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="me.kafeitu.activiti.jpa" />
-
-	<!-- 定义受环境影响易变的变量 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
 		<property name="ignoreResourceNotFound" value="true" />
@@ -27,7 +22,6 @@
 		</property>
 	</bean>
 
-	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<!-- Connection Info -->
 		<property name="driverClassName" value="${jdbc.driver}" />
@@ -38,30 +32,7 @@
 		<!-- Connection Pooling Info -->
 		<property name="defaultAutoCommit" value="false" />
 	</bean>
-
-	<!-- Jpa Entity Manager 配置 -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceXmlLocation" value="META-INF/persistence-test.xml" />
-		<property name="dataSource" ref="dataSource" />
-		<property name="persistenceUnitName" value="activiti-jpa" />
-		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
-			</props>
-		</property>
-	</bean>
-
-	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-
-	<!-- Spring Data Jpa配置 -->
-	<jpa:repositories base-package="me.kafeitu.activiti.jpa" transaction-manager-ref="transactionManager"
-		entity-manager-factory-ref="entityManagerFactory" />
-
+	
 	<!-- Jpa 事务配置 -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -69,4 +40,26 @@
 
 	<!-- 使用annotation定义事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<!-- activiti begin -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="history" value="full" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+	<bean id="formService" factory-bean="processEngine" factory-method="getFormService" />
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+	<!-- activiti end -->
 </beans>

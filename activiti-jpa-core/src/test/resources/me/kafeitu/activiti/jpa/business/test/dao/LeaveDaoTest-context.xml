@@ -14,7 +14,7 @@
 	<description>Spring For Test</description>
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="me.kafeitu.activiti.jpa" />
+	<context:component-scan base-package="me.kafeitu.activiti.jpa.business.dao" />
 
 	<!-- 定义受环境影响易变的变量 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -49,6 +49,7 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 			</props>
 		</property>

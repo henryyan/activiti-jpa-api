@@ -13,15 +13,18 @@ import me.kafeitu.activiti.jpa.business.dao.LeaveDao;
 import me.kafeitu.activiti.jpa.business.entity.Leave;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Leave DAO test
  *
  * @author HenryYan
  */
-@ContextConfiguration(locations = { "/applicationContext-test-auto-hbm2dll.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:me/kafeitu/activiti/jpa/business/test/dao/LeaveDaoTest-context.xml")
 public class LeaveDaoTest extends SpringTransactionalTestCase {
 
 	@Autowired
@@ -31,8 +34,6 @@ public class LeaveDaoTest extends SpringTransactionalTestCase {
 	private EntityManager em;
 
 	@Test
-	//如果你需要真正插入数据库,将Rollback设为false
-	//@Rollback(false) 
 	public void crudEntity() {
 
 		// 保存请假

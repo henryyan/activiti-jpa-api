@@ -17,18 +17,17 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- activiti -->
@@ -52,12 +51,17 @@
 		</dependency>
 		<!-- logging end -->
 
-		<!-- test begin -->
+		<!-- test begin
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>activiti-jpa-test</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
+		</dependency> -->
+		<!-- activiti -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
 		</dependency>
 		<!-- utils begin -->
 		<dependency>
