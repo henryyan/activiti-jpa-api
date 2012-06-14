@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import me.kafeitu.activiti.jpa.base.test.SpringTransactionalTestCase;
 import me.kafeitu.activiti.jpa.business.entity.Leave;
 import me.kafeitu.activiti.jpa.business.repository.LeaveRepository;
@@ -21,7 +18,6 @@ import me.kafeitu.activiti.jpa.service.RuntimeJpaService;
 
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -46,34 +42,12 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 	@Autowired
 	private RuntimeJpaService runtimeJpaService;
 	
-	@PersistenceContext
-	private EntityManager em;
-
 	private Leave leave;
-	private ProcessInstance processInstance;
+	protected ProcessInstance processInstance = null;
 
 	@Test
 	public void testBeans() {
 		assertNotNull(leaveWorkflowService);
-	}
-
-	@Test
-	public void testStartProcessInstance() throws Exception {
-		Map<String, Object> variables = new HashMap<String, Object>();
-		startSingleProcessInstance(variables);
-
-		assertNotNull(processInstance);
-
-		// flush session to db
-		leaveWorkflowService.flush();
-
-		em.clear();
-		
-		leave = leaveRepository.findOne(leave.getId());
-		assertEquals(processInstance.getBusinessKey(), leave.getId().toString());
-		ExecutionJpaEntity executionJpaEntity = leave.getProcessInstance();
-		System.out.println(ToStringBuilder.reflectionToString(executionJpaEntity));
-		assertEquals("deptLeaderAudit", executionJpaEntity.getActivityId());
 	}
 
 	@Test
@@ -90,6 +64,9 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 			allList.add(executionJpaEntity);
 		}
 		assertEquals(1, allList.size());
+		
+		List<Leave> find = leaveWorkflowService.find("select o from Leave o where o.id=1");
+		assertEquals(1, find.size());
 	}
 
 	@Test
@@ -109,6 +86,9 @@ public class LeaveWorkflowServiceTest extends SpringTransactionalTestCase {
 			allList.add(executionJpaEntity);
 		}
 		assertEquals(counter, allList.size());
+		
+		List<Leave> find = leaveWorkflowService.find("select o from Leave o");
+		assertEquals(5, find.size());
 	}
 
 	/**
