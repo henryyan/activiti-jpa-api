@@ -19,7 +19,7 @@
 		<activiti.version>5.9</activiti.version>
 		<hibernate.version>3.6.0.Final</hibernate.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<spring.version>3.1.1.RELEASE</spring.version>
+		<spring.version>5.3.19</spring.version>
 		<commons-lang3.version>3.1</commons-lang3.version>
 	</properties>
 
